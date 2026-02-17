@@ -74,12 +74,10 @@ def build_and_plot_knowledge_graph_matplotlib(srl_results):
     # Show plot
     plt.show()
 
-
 def load_text(filepath):
     with open(filepath, "r", encoding="utf-8") as f:
         text = f.read()
     return text
-
 
 text = load_text("alice.txt")
 
@@ -117,13 +115,10 @@ def query_graph(srl_results, subject_node, verb_edge):
             answer.append(v)
     return answer
 
-
-
 def is_action_verb(token):
     if token.pos_ == "VERB":
         return normalize_verb(token)
     return None
-
 
 query = "Where did Alice go?"
 for token in nlp(query):
@@ -131,11 +126,11 @@ for token in nlp(query):
     if result == "go":
         print(query_graph(srl_results, "Alice", result))
         break
-
-
+        
 query = "What did Alice say?"
 for token in nlp(query):
     result = is_action_verb(token)
-    if result == "say":   # ✅ fixed bug here
+    if result == "say":  
         print(query_graph(srl_results, "Alice", result))
+
         break
